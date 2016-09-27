@@ -1,0 +1,37 @@
+console-intro-message: true
+
+join-event:
+  enabled: true
+  default-message: "Ciao"
+  default-sound: "NOTE_PLING"
+
+quit-event:
+  enabled: true
+  default-message: "Bye"
+  default-sound: "NOTE_PLING"
+
+sound-manager:
+  enabled: true
+  sound-mode: "everybody"
+  volume: 1.0
+  pitch: 0.0
+
+
+custom-groups:
+  '1':
+    permission: "customjoinmessages.admin"
+    join-message: "Admin joined server {nick}"
+    quit-message: "NONE"
+    join-sound: "NOTE_PLING"
+
+  '2':
+    permission: "customjoinmessages.admin"
+    join-message: "Admin joined server {nick}"
+    quit-message: "NONE"
+    join-sound: "NOTE_PLING"
+
+  '3':
+    permission: "customjoinmessages.admin"
+    join-message: "Admin joined server {nick}"
+    quit-message: "NONE"
+    join-sound: "NOTE_PLING"
