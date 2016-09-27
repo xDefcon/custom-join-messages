@@ -17,7 +17,7 @@ public class CustomJoinMessages extends JavaPlugin {
         Bukkit.getServer().getPluginManager().registerEvents(new LoginListener(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new LogoutListener(), this);
 
-        if (config.getConfig().getBoolean("consolae-intro-message")) {
+        if (config.getConfig().getBoolean("console-intro-message")) {
             getLogger().info("Heyo, thanks for using CustomJoinMessages! If you need help with this plugin send a PM to xDefcon on SpigotMC.org. You can disable this message in the config.");
         }
         if (!config.getConfig().getBoolean("join-event.enabled")) {
