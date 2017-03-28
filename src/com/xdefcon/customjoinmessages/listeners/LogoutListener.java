@@ -15,11 +15,10 @@ import java.util.Set;
 
 public class LogoutListener implements Listener {
 
-    private Config c;
     private FileConfiguration config;
 
     public LogoutListener(){
-        this.c = new Config();
+        Config c = new Config();
         this.config = c.getConfig();
     }
 
@@ -30,7 +29,7 @@ public class LogoutListener implements Listener {
         Player p = e.getPlayer();
 
         Set<String> customGroups = new HashSet();
-        customGroups.addAll(config.getConfigurationSection("custom-groups").getKeys(false));
+        customGroups.addAll(config.getConfigurationSection("custom-groups").getKeys(false)); //FIXME
 
         for (int i = 1; i < customGroups.size() + 1; i++) {
             if (p.hasPermission(config.getString("custom-groups." + i + ".permission"))) {

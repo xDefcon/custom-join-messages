@@ -2,7 +2,7 @@ console-intro-message: true
 
 join-event:
   enabled: true
-  default-message: "Ciao"
+  default-message: "&c&lADMIN &c&l&n{player} &f&lhas joined!"
   default-sound: "NOTE_PLING"
 
 quit-event:

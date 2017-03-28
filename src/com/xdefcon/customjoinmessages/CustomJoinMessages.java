@@ -3,7 +3,6 @@ package com.xdefcon.customjoinmessages;
 
 import com.xdefcon.customjoinmessages.listeners.LoginListener;
 import com.xdefcon.customjoinmessages.listeners.LogoutListener;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -14,8 +13,8 @@ public class CustomJoinMessages extends JavaPlugin {
         saveDefaultConfig();
         Config config = new Config(true);
 
-        Bukkit.getServer().getPluginManager().registerEvents(new LoginListener(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new LogoutListener(), this);
+        getServer().getPluginManager().registerEvents(new LoginListener(), this);
+        getServer().getPluginManager().registerEvents(new LogoutListener(), this);
 
         if (config.getConfig().getBoolean("console-intro-message")) {
             getLogger().info("Heyo, thanks for using CustomJoinMessages! If you need help with this plugin send a PM to xDefcon on SpigotMC.org. You can disable this message in the config.");

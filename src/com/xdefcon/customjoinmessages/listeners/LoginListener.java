@@ -26,7 +26,7 @@ public class LoginListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         if (!this.config.getBoolean("join-event.enabled")) return;
-
+        e.setJoinMessage(null);
         Player p = e.getPlayer();
 
         Set<String> customGroups = new HashSet();
