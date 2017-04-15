@@ -2,12 +2,12 @@ console-intro-message: true
 
 join-event:
   enabled: true
-  default-message: "&c&lADMIN &c&l&n{player} &f&lhas joined!"
+  default-message: "&e&l[&f&l+&e&l] &c&l&n{player} &f&lhas joined!"
   default-sound: "NOTE_PLING"
 
 quit-event:
   enabled: true
-  default-message: "Bye"
+  default-message: "&e&l[&f&l-&e&l] &c&l&n{player} &f&lhas left!"
   default-sound: "NOTE_PLING"
 
 sound-manager:
@@ -19,19 +19,19 @@ sound-manager:
 
 custom-groups:
   '1':
-    permission: "customjoinmessages.admin"
-    join-message: "Admin joined server {nick}"
+    permission: "customjoinmessages.owner"
+    join-message: "&c&lOWNER &c&l&n{player} &f&lhas joined!"
     quit-message: "NONE"
     join-sound: "NOTE_PLING"
 
   '2':
     permission: "customjoinmessages.admin"
-    join-message: "Admin joined server {nick}"
-    quit-message: "NONE"
+    join-message: "&b&lADMIN &b&l&n{player} &f&lhas joined!"
+    quit-message: "&b&lADMIN &b&l&n{player} &f&lhas left!"
     join-sound: "NOTE_PLING"
 
   '3':
-    permission: "customjoinmessages.admin"
-    join-message: "Admin joined server {nick}"
+    permission: "customjoinmessages.vip"
+    join-message: "&e&lVIP &e&l&n{player} &f&lis now with us!"
     quit-message: "NONE"
     join-sound: "NOTE_PLING"

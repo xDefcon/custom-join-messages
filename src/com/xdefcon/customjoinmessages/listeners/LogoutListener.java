@@ -26,6 +26,7 @@ public class LogoutListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent e) {
         if (!this.config.getBoolean("quit-event.enabled")) return;
 
+        e.setQuitMessage(null);
         Player p = e.getPlayer();
 
         Set<String> customGroups = new HashSet();
