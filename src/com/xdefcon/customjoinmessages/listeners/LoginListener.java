@@ -1,9 +1,8 @@
 package com.xdefcon.customjoinmessages.listeners;
 
 
-import com.xdefcon.customjoinmessages.Config;
-import com.xdefcon.customjoinmessages.SoundManager;
-import org.bukkit.Bukkit;
+import com.xdefcon.customjoinmessages.CustomJoinMessages;
+import com.xdefcon.customjoinmessages.utils.SoundUtil;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,17 +14,18 @@ import java.util.Set;
 
 public class LoginListener implements Listener {
 
-    private Config c;
+    private CustomJoinMessages plugin;
     private FileConfiguration config;
 
-    public LoginListener(){
-        this.c = new Config();
-        this.config = c.getConfig();
+    public LoginListener(CustomJoinMessages plugin) {
+        this.plugin = plugin;
+        this.config = plugin.getConfig();
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
+    public void onPlayerJoin(PlayerJoinEvent e) {
         if (!this.config.getBoolean("join-event.enabled")) return;
+
         e.setJoinMessage(null);
         Player p = e.getPlayer();
 
@@ -34,19 +34,17 @@ public class LoginListener implements Listener {
 
         for (int i = 1; i < customGroups.size() + 1; i++) {
             if (p.hasPermission(config.getString("custom-groups." + i + ".permission"))) {
-                Bukkit.broadcastMessage(config.getString("custom-groups." + i + ".join-message").replace("&", "§").replace("{nick}", p.getName()));
+                plugin.getServer().broadcastMessage(config.getString("custom-groups." + i + ".join-message").replace("&", "§").replace("{nick}", p.getName()));
                 if (!config.getString("custom-groups." + i + ".join-sound").equalsIgnoreCase("NONE")) {
-                    SoundManager sm = new SoundManager();
-                    sm.playSound(p, config.getString("custom-groups." + i + ".join-sound"));
+                    SoundUtil.playSound(p, config.getString("custom-groups." + i + ".join-sound"));
                 }
                 return;
             }
         }
         if (!config.getString("join-event.default-message").equalsIgnoreCase("none")) {
-            Bukkit.broadcastMessage(config.getString("join-event.default-message").replace("&", "§").replace("{nick}", p.getName()));
+            plugin.getServer().broadcastMessage(config.getString("join-event.default-message").replace("&", "§").replace("{nick}", p.getName()));
             if (!config.getString("join-event.default-sound").equalsIgnoreCase("NONE")) {
-                SoundManager sm = new SoundManager();
-                sm.playSound(p, config.getString("join-event.default-sound"));
+                SoundUtil.playSound(p, config.getString("join-event.default-sound"));
             }
         }
 
