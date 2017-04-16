@@ -2,3 +2,7 @@ name: CustomJoinMessages
 version: 1.0
 author: xDefcon
 main: com.xdefcon.customjoinmessages.CustomJoinMessages
+description: "Custom join/quit messages for your server."
+commands:
+  cjmreload:
+    description: Reloads the plugin.
