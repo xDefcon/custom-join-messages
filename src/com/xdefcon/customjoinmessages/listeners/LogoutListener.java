@@ -26,7 +26,6 @@ public class LogoutListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent e) {
         if (!this.config.getBoolean("quit-event.enabled")) return;
 
-        e.setQuitMessage(null);
         Player p = e.getPlayer();
 
         Set<String> customGroups = new HashSet();
@@ -34,8 +33,8 @@ public class LogoutListener implements Listener {
 
         for (int i = 1; i < customGroups.size() + 1; i++) {
             if (p.hasPermission(config.getString("custom-groups." + i + ".permission"))) {
-                plugin.getServer().broadcastMessage(config.getString("custom-groups." + i + ".quit-message")
-                        .replace("&", "§").replace("{nick}", p.getName()));
+                e.setQuitMessage(config.getString("custom-groups." + i + ".quit-message")
+                        .replace("&", "§").replace("{player}", p.getName()));
                 if (!config.getString("custom-groups." + i + ".quit-sound").equalsIgnoreCase("NONE")) {
                     SoundUtil.playSound(p, config.getString("custom-groups." + i + ".quit-sound"));
                 }
@@ -43,8 +42,8 @@ public class LogoutListener implements Listener {
             }
         }
         if (!config.getString("quit-event.default-message").equalsIgnoreCase("none")) {
-            plugin.getServer().broadcastMessage(config.getString("quit-event.default-message")
-                    .replace("&", "§").replace("{nick}", p.getName()));
+            e.setQuitMessage(config.getString("quit-event.default-message")
+                    .replace("&", "§").replace("{player}", p.getName()));
             if (!config.getString("quit-event.default-sound").equalsIgnoreCase("NONE")) {
                 SoundUtil.playSound(p, config.getString("quit-event.default-sound"));
             }

@@ -1,37 +1,77 @@
+#########################################################################
+# CustomJoinMessages by xDefcon - Configuration file
+#
+# Please check for updates, and remember to update the config if needed!
+#########################################################################
+
+# Set this to false if you don't want to receive message in the console on startup
 console-intro-message: true
 
+# Section related to the PlayerJoinEvent
 join-event:
+  # Set this to "false" if you do not want actions taken when players login
   enabled: true
+  # This is the default join message, set this to "NONE" if you dont want it.
   default-message: "&e&l[&f&l+&e&l] &c&l&n{player} &f&lhas joined!"
+  # This is the default join sound, set this to "NONE" if you dont want it.
+  # Read the example below on custom-groups section to see all available sounds.
   default-sound: "NOTE_PLING"
 
+# Section related to the PlayerQuitEvent
 quit-event:
+  # Set this to false if you do not want actions taken when players login
   enabled: true
+  # This is the default quit message, set this to "NONE" if you dont want it.
   default-message: "&e&l[&f&l-&e&l] &c&l&n{player} &f&lhas left!"
+  # This is the default quit sound, set this to "NONE" if you dont want it.
+  # Read the example below on custom-groups section to see all available sounds.
   default-sound: "NOTE_PLING"
 
+# Section related to the sound environment
 sound-manager:
+  # Set this to false to disable completely sounds by this plugin
   enabled: true
+  # Set this to "everybody" if you want the sounds to be played for all players
+  # Set this to "single" if you want the sounds to be player only for the player that has logged in
   sound-mode: "everybody"
+  # Customize the volume (min: 0.0 - max: 1.0)
   volume: 1.0
+  # Customize the pitch (playing speed, 1.0 = normal speed, 0.5 = half speed)
   pitch: 0.0
 
+# Section related to the per command permission system.
+permission-system:
+  # Customize the message sent to the players if they do not have required permission.
+  no-perm-message: "&cYou do not have permissions to execute this command."
 
+# Section related to the custom groups events
 custom-groups:
+  # 1st group
   '1':
+    # The permission required to appartain to this group
     permission: "customjoinmessages.owner"
-    join-message: "&c&lOWNER &c&l&n{player} &f&lhas joined!"
+    # Custom join message for this group only, set this to NONE if you do not want it
+    join-message: "&c&lOWNER &c&l&n{player}&f&l has joined!"
+    # Custom quit message for this group only, set this to NONE if you do not want it
     quit-message: "NONE"
+    # Choose the sound type. A list of all available sounds is retrievable here: http://bit.ly/bukkit-sounds
+    # WARNING: The link provided is a Sound list for 1.11.2, if you are using other versions, do a quick search for
+    # specific sounds, search something like "Bukkit 1.8 Sound Enum".
+    # EXAMPLE: NOTE_PLING will work in versions below 1.9, for 1.9 and greater you should use BLOCK_NOTE_PLING
     join-sound: "NOTE_PLING"
+    quit-sound: "NOTE_PLING"
 
+  # 2nd group
   '2':
     permission: "customjoinmessages.admin"
-    join-message: "&b&lADMIN &b&l&n{player} &f&lhas joined!"
-    quit-message: "&b&lADMIN &b&l&n{player} &f&lhas left!"
+    join-message: "&b&lADMIN &b&l&n{player}&f&l has joined!"
+    quit-message: "&b&lADMIN &b&l&n{player}&f&l has left!"
     join-sound: "NOTE_PLING"
+    quit-sound: "NOTE_PLING"
 
   '3':
     permission: "customjoinmessages.vip"
-    join-message: "&e&lVIP &e&l&n{player} &f&lis now with us!"
+    join-message: "&e&lVIP &e&l&n{player}&f&l is now with us!"
     quit-message: "NONE"
     join-sound: "NOTE_PLING"
+    quit-sound: "NOTE_PLING"

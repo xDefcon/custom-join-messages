@@ -26,7 +26,6 @@ public class LoginListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         if (!this.config.getBoolean("join-event.enabled")) return;
 
-        e.setJoinMessage(null);
         Player p = e.getPlayer();
 
         Set<String> customGroups = new HashSet();
@@ -34,7 +33,8 @@ public class LoginListener implements Listener {
 
         for (int i = 1; i < customGroups.size() + 1; i++) {
             if (p.hasPermission(config.getString("custom-groups." + i + ".permission"))) {
-                plugin.getServer().broadcastMessage(config.getString("custom-groups." + i + ".join-message").replace("&", "§").replace("{nick}", p.getName()));
+                e.setJoinMessage(config.getString("custom-groups." + i + ".join-message")
+                        .replace("&", "§").replace("{player}", p.getName()));
                 if (!config.getString("custom-groups." + i + ".join-sound").equalsIgnoreCase("NONE")) {
                     SoundUtil.playSound(p, config.getString("custom-groups." + i + ".join-sound"));
                 }
@@ -42,7 +42,8 @@ public class LoginListener implements Listener {
             }
         }
         if (!config.getString("join-event.default-message").equalsIgnoreCase("none")) {
-            plugin.getServer().broadcastMessage(config.getString("join-event.default-message").replace("&", "§").replace("{nick}", p.getName()));
+            e.setJoinMessage(config.getString("join-event.default-message")
+                    .replace("&", "§").replace("{player}", p.getName()));
             if (!config.getString("join-event.default-sound").equalsIgnoreCase("NONE")) {
                 SoundUtil.playSound(p, config.getString("join-event.default-sound"));
             }

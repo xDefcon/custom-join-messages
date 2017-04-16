@@ -2,6 +2,7 @@ package com.xdefcon.customjoinmessages;
 
 
 import com.xdefcon.customjoinmessages.bstats.Metrics;
+import com.xdefcon.customjoinmessages.commands.ReloadCommand;
 import com.xdefcon.customjoinmessages.listeners.LoginListener;
 import com.xdefcon.customjoinmessages.listeners.LogoutListener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +21,7 @@ public class CustomJoinMessages extends JavaPlugin {
         this.saveDefaultConfig();
         this.getServer().getPluginManager().registerEvents(new LoginListener(this), this);
         this.getServer().getPluginManager().registerEvents(new LogoutListener(this), this);
+        this.getCommand("cjmreload").setExecutor(new ReloadCommand(this));
 
         if (this.getConfig().getBoolean("console-intro-message")) {
             getLogger().info("Heyo, thanks for using CustomJoinMessages! If you need help with this plugin send a PM to xDefcon on SpigotMC.org. You can disable this message in the config.");
@@ -40,12 +42,11 @@ public class CustomJoinMessages extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
-        //todo?
+        this.getServer().getLogger().info("Plugin disabled.");
     }
 
     public void reload() {
         this.getLogger().info("Reloading the plugin...");
-        this.getServer().getScheduler().cancelAllTasks();
         this.reloadConfig();
         this.getLogger().info("Plugin reloaded.");
     }
