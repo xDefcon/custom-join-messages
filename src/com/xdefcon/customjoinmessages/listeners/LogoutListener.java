@@ -15,16 +15,15 @@ import java.util.Set;
 public class LogoutListener implements Listener {
 
     private CustomJoinMessages plugin;
-    private FileConfiguration config;
 
     public LogoutListener(CustomJoinMessages plugin) {
         this.plugin = plugin;
-        this.config = plugin.getConfig();
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
-        if (!this.config.getBoolean("quit-event.enabled")) return;
+        FileConfiguration config = plugin.getConfig();
+        if (!config.getBoolean("quit-event.enabled")) return;
 
         Player p = e.getPlayer();
 

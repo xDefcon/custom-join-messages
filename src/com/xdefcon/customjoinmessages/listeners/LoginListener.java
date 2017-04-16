@@ -15,16 +15,15 @@ import java.util.Set;
 public class LoginListener implements Listener {
 
     private CustomJoinMessages plugin;
-    private FileConfiguration config;
 
     public LoginListener(CustomJoinMessages plugin) {
         this.plugin = plugin;
-        this.config = plugin.getConfig();
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        if (!this.config.getBoolean("join-event.enabled")) return;
+        FileConfiguration config = plugin.getConfig();
+        if (!config.getBoolean("join-event.enabled")) return;
 
         Player p = e.getPlayer();
 
